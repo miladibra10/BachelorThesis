@@ -1,0 +1,48 @@
+\subsection*{پیاده‌سازی میان‌افزار خاص منظوره}
+برای پیاده‌سازی یک میان‌افزار خاص منظوره، ابتدا باید از نصب بودن زبان برنامه نویسی Golang در دستگاه مطمئن شویم.
+
+طبق تعریف میان‌افزار در بخش
+\ref{subsubsec:impl_middleware}
+، یک میان‌افزار یک struct است که تابع Process را پیاده سازی می‌کند. برای مثال می‌توان برای اضافه‌کردن یک سرتیتر به جواب، قطعه کد زیر را نوشت.
+
+\begin{latin}
+  \begin{lstlisting}
+package main
+
+import (
+  "net/http"
+)
+
+type AddHeaderMiddleware struct {
+  key string
+  val string
+}
+
+func (a AddHeaderMiddleware) Process(handler http.HandlerFunc) http.HandlerFunc {
+  return func(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set(a.key, a.val)
+    handler(w, r)
+  }
+}
+
+func New(params map[string]interface{}) (interface{}, error) {
+  return AddHeaderMiddleware{
+    key: params["key"].(string),
+    val: params["val"].(string),
+  }, nil
+}
+
+  \end{lstlisting}
+\end{latin}
+
+همچنین وجود تابع New با ورودی از نوع Map به عنوان تابع سازنده‌ی میان‌افزار الزامی است.
+
+پس از پیاده‌سازی میان‌افزار مورد نظر، می‌توان آن‌ را جهت اضافه کردن به برنامه کامپایل کرد. دستور زیر برای انجام این کار مناسب است.
+
+\begin{latin}
+  \begin{lstlisting}
+go build -buildmode=plugin <file_name>.go
+  \end{lstlisting}
+\end{latin}
+
+این دستور یک فایل با فرمت so خواهد ساخت. مسیر این فایل را می‌توان در مشخصه‌ی \lr{middlewarePath}، استفاده کرد.

@@ -1,0 +1,34 @@
+\subsection*{تنظیمات خدمت‌ها}
+با توجه به تعریف خدمت در فصل
+\ref{sec:implementation}
+، سامانه می‌تواند درخواست‌ها را به چندین خدمت مورد نظر متصل کرد. در این بخش از تنظیمات، مجموعه‌ی خدمت‌ها به برنامه شناسانده می‌شود.
+
+هر خدمت دارای سه مشخصه‌ی \lr{name}، \lr{loadbalancer} و \lr{backends} است.
+
+
+\subsubsection*{مشخصه‌ی name}
+این مشخصه‌، نام خدمت را تعیین می‌کند.
+
+\subsubsection*{مشخصه‌ی loadbalancer}
+این مشخصه‌، الگوریتم مورد استفاده جهت توازن بار بین بطن‌های خدمت‌ را مشخص می‌کند. در حال حاضر تنها الگوریتم random توسط این برنامه پشتیبانی می‌شود.
+
+\subsubsection*{مشخصه‌ی backends}
+مجموعه بطن‌های یک خدمت، توسط این مشخصه تعیین می‌شود. هر بطن دارای مشخصه‌های نام، وزن و آدرس است.
+
+نمونه‌ی تنظیمات خدمت‌ها به شکل زیر است:
+
+\begin{latin}
+    \begin{lstlisting}
+services:
+    - name: test-service
+      loadbalancer: random
+      backends:
+        - name: first
+          weight: 1
+          address: http://localhost:9092
+        - name: second
+          weight: 2
+          address: http://localhost:9093
+    \end{lstlisting}
+\end{latin}
+
