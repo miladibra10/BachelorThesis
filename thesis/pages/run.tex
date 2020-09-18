@@ -1,0 +1,32 @@
+\subsection*{راهنمای اجرا}
+با توجه به دو روش نصب برنامه، روش‌های اجرا نیز متفاوت خواهد بود.
+
+\subsubsection*{اجرا روی سکوی Docker}
+پس از نصب برنامه با استفاده از Docker و آماده سازی فایل تنظیمات، می‌توان برنامه را با دستور زیر اجرا کرد:
+
+\begin{latin}
+  \begin{lstlisting}
+docker run -p <port>:<port> -v <path_to_config_file>:/opt/highway/config.yml highwayproject/highway
+  \end{lstlisting}
+\end{latin}
+
+\textbf{نکته:}
+مقدار port باید همان port تعیین شده در فایل تنظیمات باشد.
+
+\subsubsection*{اجرای برنامه‌ی کامپایل شده}
+پس از کامپایل برنامه و ایجاد شدن فایل قابل اجرا در پوشه‌ی bin، می‌توان برنامه را با دستور زیر اجرا کرد.
+
+\begin{latin}
+  \begin{lstlisting}
+./bin/highway
+  \end{lstlisting}
+\end{latin}
+
+\textbf{نکته:}
+نکته: جهت اجرای درست برنامه، فایل تنظیمات باید در مسیر زیر موجود باشد:
+
+\begin{latin}
+  \begin{lstlisting}
+/opt/highway/config.yml
+  \end{lstlisting}
+\end{latin}

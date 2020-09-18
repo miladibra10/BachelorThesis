@@ -1,0 +1,60 @@
+\section{پیوست‌ها}\label{sec:attachments}
+
+\include{pages/dicfa2en}
+
+\section*{راهنمای کاربران}\label{subsec:manual}
+\subsection*{راهنمای نصب}
+برای نصب درگاه ارتباط با رابط‌های برنامه‌نویسی پیاده‌سازی شده، می‌توان از دو روش زیر بهره گرفت:
+
+\begin{itemize}
+    \item استفاده از سکوی Docker
+    \item کامپایل و نصب برنامه
+\end{itemize}
+
+برای استفاده از روش‌های ذکر شده، ابتدا مخزن برنامه را با استفاده از دستور زیر بارگیری کنید.
+
+\begin{latin}
+    \begin{lstlisting}
+git clone https://github.com/Highway-Project/highway
+    \end{lstlisting}
+\end{latin}
+
+
+\subsubsection*{استفاده از سکوی Docker}
+برای نصب برنامه با این روش، ابتدا از نصب بودن Docker در دستگاه خود اطمینان حاصل کنید. سپس در محیط خط فرمان، به پوشه‌ی برنامه رفته و دستور زیر را اجرا کنید:
+
+\begin{latin}
+    \begin{lstlisting}
+make docker-build
+    \end{lstlisting}
+\end{latin}
+
+
+\subsubsection*{کامپایل و نصب برنامه}
+این روش برای اجرا در محیط سیستم‌عامل لینوکس مناسب است.
+
+برای نصب برنامه با این روش، ابتدا از نصب بودن زبان برنامه‌نویسی Golang در دستگاه خود اطمینان حاصل کنید. سپس برنامه را با استفاده از دستور زیر در محیط خط فرمان، ‌کامپایل کنید.
+
+
+\begin{latin}
+    \begin{lstlisting}
+make build
+    \end{lstlisting}
+\end{latin}
+
+پس از اجرای دستور فوق، فایل قابل اجرای این برنامه در پوشه‌ی bin و با نام highway موجود خواهد بود.
+
+\input{pages/global}
+\input{pages/router}
+\input{pages/services}
+\input{pages/middlewares}
+\input{pages/rules}
+
+\input{pages/run}
+
+\input{pages/custom}
+
+
+\cleardoublepage
+
+
